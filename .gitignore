@@ -1,0 +1,12 @@
+*
+!*.asm
+!*.gitignore
+
+finished/*
+unfinished/*
+
+finished/*.o
+finished/*.o
+
+!finished/*.asm
+!unfinished/*.asm
