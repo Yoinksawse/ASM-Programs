@@ -1,0 +1,3 @@
+This repository contains all the current x86 Assembly programs I am currently working on / have written in the journey of learning the language.
+
+(Salute to the hours wasted trying to debug .gitignore. THe issues were caused by my failure to notice that "Source control" in VSC gives a list of what is going to be tracked and what not to be tracked. If I had noticed this helpful simulation earlier, the time would not have been wasted. Lesson learnt, don't cry over spilt kopi...)
