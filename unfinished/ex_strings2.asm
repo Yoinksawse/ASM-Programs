@@ -3,7 +3,7 @@ section .bss
     cmd resb 1
 
 section .data
-    msg0 db 'Hi! Enter:', 0xa, '1: test movs', 0xa, '2: test cmps', 0xa, '3: test scas', 0xa
+    msg0 db 'Hi! Enter:', 0xa, '1: test movs', 0xa, '2: test cmps', 0xa, '3: test scas', 0xa, '4: test lods', 0xa, '5: test stos', 0xa
     lenmsg0 equ ($ - msg0)
     s1 db 'Hello screw u!', 0xa             ;for movs test, cmps test, scas test
     lens1 equ ($ - s1)                      ;for movs test, cmps test, scas test
@@ -60,6 +60,12 @@ main:
         demand_scas_test:
             cmp al, '3'
             je scas_test
+        demand_lods_test:
+            cmp al, '4'
+            je lods_test
+        demand_stos_test:
+            cmp al, '5'
+            je stos_test
         jmp exit
     movs_test:  ;clear!
         ;movs moves string from esi to edi
@@ -110,7 +116,9 @@ main:
         mov edi, s2                         ;edi: stores destination variable
         mov esi, s4                         ;esi: source is s4 ('c')
         cld
+        rep stosb 
 
+        print s2, 16
         
         
 exit:
