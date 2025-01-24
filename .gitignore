@@ -1,12 +1,9 @@
-*
-!*.asm
-!*.gitignore
+/.vscode
 
+finished/*.o
 finished/*
-unfinished/*
-
-finished/*.o
-finished/*.o
-
 !finished/*.asm
+
+unfinished/*.o
+unfinished/*
 !unfinished/*.asm
