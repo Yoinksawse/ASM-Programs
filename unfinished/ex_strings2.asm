@@ -110,15 +110,16 @@ main:
             clr_regs
             jmp exit
     lods_test:  ;
-
-    stos_test:  ;
+        
+    stos_test:  ;clear!
         mov ecx, 16                         ;ecx: stores number of reps for rep
         mov edi, s2                         ;edi: stores destination variable
         mov esi, s4                         ;esi: source is s4 ('c')
         cld
         rep stosb 
-
+        
         print s2, 16
+        jmp exit
         
         
 exit:
