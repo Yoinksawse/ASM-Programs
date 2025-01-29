@@ -10,8 +10,12 @@ section .data
     ;s3 db 'Hello shrew u''                  ;for cmps test
     s3 db 'Hello screw u!'                  ;for cmps test
     lens3 equ ($ - s3)                      ;for cmps test
-    s4 db 'c'                               ;for scas test
-    lens4 equ ($ - s4)                      ;for scas test
+    ;s4 db 'c'                               ;for scas test, stos test
+    s4 db 'I LOVE OSDEV!'                          ;for stos test
+    lens4 equ ($ - s4)                      ;for stos test
+
+    s5 db 1, 2, 3, 4, 5, 6, 7, 8                          ;for stos test
+    lens5 equ ($ - s5)                      ;for stos test
 
     msg1 db 'Strings equal!'                ;for cmps test
     lenmsg1 equ ($ - msg1)                  ;for cmps test
@@ -109,15 +113,37 @@ main:
             print msg3, lenmsg3
             clr_regs
             jmp exit
-    lods_test:  ;
-        
+    lods_test:  ;clear!
+        ;loads string from memory into (e)ax / (e)di
+        mov ecx, lens4
+        mov esi, s4
+        mov edi, s2
+        loo:
+            lodsb 
+            or al, 32   ;subtracting 32 to make lowercase
+            stosb
+        loop loo
+
+        print s2, lens4
+        jmp exit
+
     stos_test:  ;clear!
-        mov ecx, 16                         ;ecx: stores number of reps for rep
+        mov ecx, 0                         ;ecx: stores number of reps for rep
         mov edi, s2                         ;edi: stores destination variable
-        mov esi, s4                         ;esi: source is s4 ('c')
+        ;mov esi, s5                         ;esi: source is s5 ('c')
+        ;mov eax, s5
         cld
-        rep stosb 
-        
+        loo2:
+            mov al, [s5 + ecx]
+            add al, '0'
+            stosb  ;mov di, al (better ax, since di = 16bit & al = 8bit
+
+            ;looping logic + pointer
+            inc ecx
+            cmp ecx, lens5
+            jne loo2
+
+
         print s2, 16
         jmp exit
         
